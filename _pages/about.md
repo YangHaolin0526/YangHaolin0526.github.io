@@ -35,7 +35,7 @@ Experiences
 ======
 
 
-<p><a href="https://larc.smu.edu.sg/"><span class="author">Living Analytics Research Centre, Singapore Management University</span></a>, Singapre. </p>
+<p><a href="https://larc.smu.edu.sg/"><span class="author">Living Analytics Research Centre, Singapore Management University</span></a>, Singapore. </p>
 
 - Research assistant. Sept. 2019 - Sept. 2020 
 - Advisor: <a href="https://sites.google.com/site/aseplim/"><span class="author">Prof. Ee-Peng Lim</span></a> <br>
