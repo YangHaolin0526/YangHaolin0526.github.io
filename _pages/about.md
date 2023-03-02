@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-Currently, I am working on building Large Language Models (LLM) and enable its usage in more application scenarios. Todays' LLMs are often extremely computation-expensive and difficult to control, which limits theirs usefulness. To make them user-friendly and accessible to more individuals and organizations, my research focus on: (1) make them better API's for various realistic problems; (2) build smailler but more specificalize LLM expert; (3) incorporate various input signals to them like image and video. 
+Currently, I am working on building Large Language Models (LLM) and enable its usage in more application scenarios. Todays' LLMs are often extremely computation-expensive and difficult to control, which limits theirs usefulness. To make them user-friendly and accessible to more individuals and organizations, my research focus on: (1) make them better API's for various realistic problems; (2) build smaller but more specificalized LLM expert; (3) incorporate various input signals to them like image and video. 
 
 I am an Ph.D. student of School of Computer Science and Engineering at [Hong Kong University of Science and Technology](https://hkust.edu.hk/). I am affliated to [Statistics and Machine Learning Research Group](https://statml.hkust.edu.hk/). 
 
