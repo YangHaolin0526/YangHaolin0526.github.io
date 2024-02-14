@@ -10,7 +10,7 @@ redirect_from:
 
 Currently, I am working on building Large Language Models (LLM) and enable its usage in more application scenarios. Todays' LLMs are often extremely computation-expensive and difficult to control, which limits theirs usefulness. To make them user-friendly and accessible to more individuals and organizations, my research focus on: (1) make them better API's for various realistic problems; (2) build smaller but more specificalized LLM expert; (3) incorporate various input signals to them like image and video. 
 
-I am an Ph.D. student of School of Computer Science and Engineering at [Hong Kong University of Science and Technology](https://hkust.edu.hk/). I am affliated to [Statistics and Machine Learning Research Group](https://statml.hkust.edu.hk/). 
+I am an Ph.D. student of School of Computer Science and Engineering at [Hong Kong University of Science and Technology](https://hkust.edu.hk/). I am affliated to [Statistics and Machine Learning Research Group](https://statml.hkust.edu.hk/) and [JC STEM Lab of Data Science Foundations](https://cse.hkust.edu.hk/dsf/). 
 
 
 Education
@@ -18,7 +18,7 @@ Education
 [Hong Kong University of Science and Technology](https://hkust.edu.hk/), Clear Water Bay, Hong Kong SAR
 - Ph.D. Student in Computer Science and Engineering
 - Sept. 2021 - Present
-- Advisor: [Prof.Tong Zhang](http://tongzhang-ml.org/)
+- Advisor: [Prof.Tong Zhang](http://tongzhang-ml.org/) and [Prof.Xiaofang Zhou](https://sites.google.com/view/xiaofang-zhou)
 
 [University of Electronic Science and Technology of China](https://www.uestc.edu.cn/) 
 - Master of Computer Science in School of Computer Science and Engineering
@@ -50,7 +50,7 @@ Experiences
 
 <p><a href=""><span class="author">Bytedance AI Lab</span></a>, Shanghai, China. </p>
 
-- Research Interns. July. 2022 - 
+- Research Interns. July. 2022 - June.2023
 - Advisor: <a href="https://scholar.google.com/citations?user=BnSQUocAAAAJ&hl=zh-CN"><span class="author">Dr.Xinsong Zhang</span></a> and <a href="https://scholar.google.com/citations?user=nTl5mSwAAAAJ&hl=zh-CN"><span class="author">Dr.Hang Li</span></a> <br>
 - MultiModal Foundation Language Models
 
