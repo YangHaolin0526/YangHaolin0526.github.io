@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publication Filter Test - New System</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Publication Filter Test - New System</h1>
+    
+    <!-- Publications with Filter Tabs -->
+    <div class="publications-container">
+        <p>Most recent publications on <a href="https://scholar.google.com/citations?user=q0De288AAAAJ&hl=en" style="color: #4285f4;">Google Scholar</a>.</p>
+        
+        <!-- Filter Tabs -->
+        <div class="publication-filters">
+            <button class="filter-btn active" data-filter="selected" onclick="filterPublications('selected', this)">SELECTED PAPERS</button>
+            <button class="filter-btn" data-filter="all" onclick="filterPublications('all', this)">ALL</button>
+            <button class="filter-btn" data-filter="machine-learning" onclick="filterPublications('machine-learning', this)">MACHINE LEARNING</button>
+            <button class="filter-btn" data-filter="natural-language" onclick="filterPublications('natural-language', this)">NATURAL LANGUAGE PROCESSING</button>
+            <button class="filter-btn" data-filter="computer-vision" onclick="filterPublications('computer-vision', this)">COMPUTER VISION</button>
+        </div>
+        
+        <!-- Publications List -->
+        <div class="publications-list">
+            
+            <div class="publication-item" data-category="selected machine-learning computer-vision">
+                <div class="pub-title">
+                    <a href="">G-llava: Solving geometric problem with multi-modal large language model</a>
+                </div>
+                <div class="pub-authors">
+                    Jiahui Gao, Renjie Pi, Jipeng Zhang, Jiacheng Ye, Wanjun Zhong, Yufei Wang, Lanqing Hong, Jianhua Han, Hang Xu, Zhenguo Li, Lingpeng Kong.
+                </div>
+                <div class="pub-venue">
+                    <em>ICLR 2024</em>
+                </div>
+                <div class="pub-links">
+                    [<a href="#">bib</a>]
+                </div>
+            </div>
+
+            <div class="publication-item" data-category="selected machine-learning computer-vision">
+                <div class="pub-title">
+                    <a href="">Image Textualization: An Automatic Framework for Creating Accurate and Detailed Image Descriptions</a>
+                </div>
+                <div class="pub-authors">
+                    Renjie Pi, Jianshu Zhang, Jipeng Zhang, Rui Pan, Zhekai Chen, Tong Zhang.
+                </div>
+                <div class="pub-venue">
+                    <em>NeurIPS 2024</em>
+                </div>
+                <div class="pub-links">
+                    [<a href="#">bib</a>]
+                </div>
+            </div>
+
+            <div class="publication-item" data-category="machine-learning computer-vision">
+                <div class="pub-title">
+                    <a href="">Strengthening Multimodal Large Language Model with Bootstrapped Preference Optimization</a>
+                </div>
+                <div class="pub-authors">
+                    Renjie Pi, Tianyang Han, Wei Xiong, Jipeng Zhang, Runtao Liu, Rui Pan, Tong Zhang.
+                </div>
+                <div class="pub-venue">
+                    <em>ECCV 2024</em>
+                </div>
+                <div class="pub-links">
+                    [<a href="#">bib</a>]
+                </div>
+            </div>
+
+            <div class="publication-item" data-category="machine-learning natural-language">
+                <div class="pub-title">
+                    <a href="">ExeSQL: Self-Taught Text-to-SQL Models with Execution-Driven Bootstrapping for SQL Dialects</a>
+                </div>
+                <div class="pub-authors">
+                    Jipeng Zhang, Haolin Yang, Kehao Miao, Ruiyuan Zhang, Renjie Pi, Jiahui Gao, Xiaofang Zhou.
+                </div>
+                <div class="pub-venue">
+                    <em>arxiv 2025</em>
+                </div>
+                <div class="pub-links">
+                    [<a href="#">bib</a>]
+                </div>
+            </div>
+
+            <div class="publication-item" data-category="selected machine-learning natural-language">
+                <div class="pub-title">
+                    <a href="">Graph-to-Tree Learning for Solving Math Word Problems</a>
+                </div>
+                <div class="pub-authors">
+                    Jipeng Zhang*, Lei Wang*, Roy Ka-Wei Lee, Yi Bin, Yan Wang, Jie Shao, Ee-Peng Lim.
+                </div>
+                <div class="pub-venue">
+                    <em>ACL 2020</em>
+                </div>
+                <div class="pub-links">
+                    [<a href="#">bib</a>]
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <style>
+    .publications-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .publications-container p {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 1rem;
+    }
+
+    .publication-filters {
+        display: flex;
+        gap: 0;
+        margin-bottom: 30px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        background: #f8f9fa;
+    }
+
+    .filter-btn {
+        background: transparent;
+        border: none;
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #666;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-right: 1px solid #ddd;
+        white-space: nowrap;
+        position: relative;
+        z-index: 10;
+        outline: none;
+    }
+
+    .filter-btn:last-child {
+        border-right: none;
+    }
+
+    .filter-btn:hover {
+        background: #e9ecef;
+        color: #333;
+    }
+
+    .filter-btn.active {
+        background: #007bff;
+        color: white;
+    }
+
+    .publications-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .publication-item {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        border: 1px solid #eee;
+        transition: all 0.3s ease;
+    }
+
+    .publication-item:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .pub-title {
+        margin-bottom: 8px;
+    }
+
+    .pub-title a {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #4285f4;
+        text-decoration: none;
+        line-height: 1.3;
+    }
+
+    .pub-title a:hover {
+        text-decoration: underline;
+    }
+
+    .pub-authors {
+        color: #666;
+        margin-bottom: 6px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .pub-venue {
+        color: #888;
+        margin-bottom: 8px;
+        font-size: 0.85rem;
+    }
+
+    .pub-links {
+        font-size: 0.8rem;
+    }
+
+    .pub-links a {
+        color: #4285f4;
+        text-decoration: none;
+    }
+
+    .pub-links a:hover {
+        text-decoration: underline;
+    }
+    </style>
+
+    <!-- 包含我们的publication-filter.js -->
+    <script>
+    /* Publication Filter System for Jekyll */
+    $(document).ready(function() {
+        console.log('Publication filter system initializing...');
+        
+        // 全局过滤函数
+        window.filterPublications = function(filter, clickedButton) {
+            console.log('Filtering by:', filter);
+            
+            // 移除所有active类
+            $('.filter-btn').removeClass('active');
+            
+            // 添加active到点击的按钮
+            $(clickedButton).addClass('active');
+            
+            var visibleCount = 0;
+            
+            // 遍历所有publication项目
+            $('.publication-item').each(function() {
+                var $item = $(this);
+                var categories = $item.attr('data-category') || '';
+                
+                if (filter === 'all' || categories.indexOf(filter) >= 0) {
+                    $item.show();
+                    visibleCount++;
+                } else {
+                    $item.hide();
+                }
+            });
+            
+            console.log('Showing', visibleCount, 'publications for filter:', filter);
+        };
+        
+        // 初始化过滤器
+        function initializePublicationFilters() {
+            console.log('Initializing publication filters...');
+            
+            var $filterButtons = $('.filter-btn');
+            var $publicationItems = $('.publication-item');
+            
+            console.log('Found', $filterButtons.length, 'filter buttons');
+            console.log('Found', $publicationItems.length, 'publication items');
+            
+            if ($filterButtons.length > 0 && $publicationItems.length > 0) {
+                // 默认显示selected过滤器
+                var $selectedBtn = $('.filter-btn[data-filter="selected"]');
+                if ($selectedBtn.length > 0) {
+                    window.filterPublications('selected', $selectedBtn[0]);
+                    console.log('Publication filters initialized successfully!');
+                    return true;
+                }
+            }
+            
+            console.log('Publication filter elements not found, retrying...');
+            return false;
+        }
+        
+        // 延迟初始化以确保DOM完全加载
+        setTimeout(function() {
+            if (!initializePublicationFilters()) {
+                // 如果第一次失败，再试一次
+                setTimeout(initializePublicationFilters, 1000);
+            }
+        }, 500);
+    });
+    </script>
+</body>
+</html> 

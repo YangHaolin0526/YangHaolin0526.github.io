@@ -1,5 +1,5 @@
 current directory: /Users/zhangjipeng/2003pro.github.io/vendor/bundle/ruby/2.6.0/gems/commonmarker-0.23.11/ext/commonmarker
-/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20250605-33164-1es2zi8.rb extconf.rb
+/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby -I /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/2.6.0 -r ./siteconf20250606-63175-1izsuxz.rb extconf.rb
 mkmf.rb can't find header files for ruby at /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/lib/ruby/include/ruby.h
 
 You might have to install separate package for the ruby development
