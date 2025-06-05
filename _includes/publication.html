@@ -8,6 +8,7 @@
                 <button class="filter-btn" data-filter="all" onclick="handleFilterClick('all', this)">ALL</button>
                 <button class="filter-btn" data-filter="machine-learning" onclick="handleFilterClick('machine-learning', this)">MACHINE LEARNING</button>
                 <button class="filter-btn" data-filter="natural-language" onclick="handleFilterClick('natural-language', this)">NATURAL LANGUAGE PROCESSING</button>
+                <button class="filter-btn" data-filter="computer-vision" onclick="handleFilterClick('computer-vision', this)">COMPUTER VISION</button>
             </div>
     
     <!-- Publications List -->
@@ -557,9 +558,103 @@
 </style>
 
 <script>
-// 适用于Jekyll环境的publication过滤器
+// 适用于Jekyll环境的publication过滤器 - 带自动分类功能
 (function() {
     'use strict';
+    
+    // 自动分类规则
+    var categoryRules = {
+        'machine-learning': [
+            'machine learning', 'ml', 'deep learning', 'neural', 'model', 'training', 'optimization',
+            'multimodal', 'vision-language', 'vlm', 'foundation model', 'large language model',
+            'llm', 'gpt', 'bert', 'transformer', 'finetuning', 'alignment', 'rlhf', 'reinforcement',
+            'detection', 'visual', 'image', 'geometric', 'preference optimization', 'bootstrapped'
+        ],
+        'natural-language': [
+            'language', 'nlp', 'text', 'linguistic', 'parsing', 'generation', 'understanding',
+            'sql', 'code', 'programming', 'mathematical', 'reasoning', 'word problems',
+            'theorem', 'lean4', 'math', 'autoregressive', 'evaluation', 'gradient', 'coreset',
+            'bilingual', 'low-resource', 'dialect'
+        ],
+        'computer-vision': [
+            'vision', 'image', 'visual', 'detection', 'recognition', 'computer vision',
+            'textualization', 'geometric', 'multimodal', 'vision-language'
+        ]
+    };
+    
+    // 高质量会议/期刊列表 - 自动标记为selected
+    var topVenues = [
+        'ICLR', 'NeurIPS', 'ICML', 'ACL', 'EMNLP', 'NAACL', 'CVPR', 'ICCV', 'ECCV',
+        'TPAMI', 'JMLR', 'TMLR', 'Nature', 'Science', 'AAAI', 'IJCAI'
+    ];
+    
+    // 自动分类函数
+    function autoClassifyPublication(title, venue, authors) {
+        var categories = [];
+        var text = (title + ' ' + venue + ' ' + authors).toLowerCase();
+        
+        // 检查是否为顶级会议/期刊
+        var isTopVenue = topVenues.some(function(topVenue) {
+            return venue.toUpperCase().indexOf(topVenue) >= 0;
+        });
+        
+        if (isTopVenue) {
+            categories.push('selected');
+        }
+        
+        // 检查每个类别的关键词
+        for (var category in categoryRules) {
+            var keywords = categoryRules[category];
+            var matchCount = 0;
+            
+            for (var i = 0; i < keywords.length; i++) {
+                if (text.indexOf(keywords[i]) >= 0) {
+                    matchCount++;
+                }
+            }
+            
+            // 如果匹配到关键词，添加到类别中
+            if (matchCount > 0) {
+                categories.push(category);
+            }
+        }
+        
+        // 确保至少有一个类别
+        if (categories.length === 0) {
+            categories.push('machine-learning'); // 默认分类
+        }
+        
+        return categories.join(' ');
+    }
+    
+    // 自动应用分类到所有论文
+    function applyAutoClassification() {
+        console.log('🤖 Starting automatic classification...');
+        
+        var items = document.getElementsByClassName('publication-item');
+        var classifiedCount = 0;
+        
+        for (var i = 0; i < items.length; i++) {
+            var item = items[i];
+            var titleElement = item.querySelector('.pub-title a');
+            var venueElement = item.querySelector('.pub-venue');
+            var authorsElement = item.querySelector('.pub-authors');
+            
+            if (titleElement && venueElement && authorsElement) {
+                var title = titleElement.textContent || '';
+                var venue = venueElement.textContent || '';
+                var authors = authorsElement.textContent || '';
+                
+                var autoCategories = autoClassifyPublication(title, venue, authors);
+                item.setAttribute('data-category', autoCategories);
+                
+                console.log('📄 "' + title.substring(0, 50) + '..." -> [' + autoCategories + ']');
+                classifiedCount++;
+            }
+        }
+        
+        console.log('✅ Auto-classified ' + classifiedCount + ' publications');
+    }
     
     // 全局过滤函数
     window.handleFilterClick = function(filter, clickedButton) {
@@ -614,16 +709,22 @@
     function initializeFilters() {
         console.log('🚀 Initializing publication filters in Jekyll...');
         
-        // 检查是否存在按钮
+        // 检查是否存在按钮和论文条目
         var filterButtons = document.getElementsByClassName('filter-btn');
-        console.log('Found ' + filterButtons.length + ' filter buttons');
+        var publicationItems = document.getElementsByClassName('publication-item');
         
-        if (filterButtons.length === 0) {
-            console.log('⚠️ No filter buttons found, retrying...');
+        console.log('Found ' + filterButtons.length + ' filter buttons');
+        console.log('Found ' + publicationItems.length + ' publication items');
+        
+        if (filterButtons.length === 0 || publicationItems.length === 0) {
+            console.log('⚠️ Elements not ready, retrying...');
             return false;
         }
         
-        // 默认激活selected过滤器
+        // 首先执行自动分类
+        applyAutoClassification();
+        
+        // 然后激活selected过滤器
         var selectedBtn = document.querySelector('.filter-btn[data-filter="selected"]');
         if (selectedBtn) {
             window.handleFilterClick('selected', selectedBtn);
