@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Filter Test</title>
+    <style>
+        .publication-filters {
+            display: flex;
+            gap: 5px;
+            margin: 20px 0;
+        }
+        .filter-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .filter-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        .publication-item {
+            background: #f0f0f0;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .debug {
+            background: #fffacd;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>简单过滤器测试</h1>
+    
+    <div id="debug" class="debug">点击按钮查看调试信息...</div>
+    
+    <div class="publication-filters">
+        <button class="filter-btn active" data-filter="selected" onclick="handleFilterClick('selected', this)">SELECTED PAPERS</button>
+        <button class="filter-btn" data-filter="all" onclick="handleFilterClick('all', this)">ALL</button>
+        <button class="filter-btn" data-filter="machine-learning" onclick="handleFilterClick('machine-learning', this)">MACHINE LEARNING</button>
+        <button class="filter-btn" data-filter="natural-language" onclick="handleFilterClick('natural-language', this)">NATURAL LANGUAGE PROCESSING</button>
+    </div>
+    
+    <div class="publications-list">
+        <div class="publication-item" data-category="selected machine-learning">
+            <strong>论文1 (Selected + ML)</strong><br>
+            这是一篇精选的机器学习论文
+        </div>
+        
+        <div class="publication-item" data-category="selected natural-language">
+            <strong>论文2 (Selected + NLP)</strong><br>
+            这是一篇精选的自然语言处理论文
+        </div>
+        
+        <div class="publication-item" data-category="machine-learning">
+            <strong>论文3 (ML only)</strong><br>
+            这是一篇机器学习论文
+        </div>
+        
+        <div class="publication-item" data-category="natural-language">
+            <strong>论文4 (NLP only)</strong><br>
+            这是一篇自然语言处理论文
+        </div>
+        
+        <div class="publication-item" data-category="machine-learning natural-language">
+            <strong>论文5 (Both ML and NLP)</strong><br>
+            这篇论文涵盖两个领域
+        </div>
+    </div>
+
+<script>
+// 简单直接的过滤处理函数
+function handleFilterClick(filter, clickedButton) {
+    var debugDiv = document.getElementById('debug');
+    debugDiv.innerHTML += '<br>🔄 Button clicked: ' + filter + ' at ' + new Date().toLocaleTimeString();
+    
+    try {
+        // 1. 移除所有按钮的active类
+        var allButtons = document.getElementsByClassName('filter-btn');
+        for (var i = 0; i < allButtons.length; i++) {
+            allButtons[i].classList.remove('active');
+        }
+        
+        // 2. 给点击的按钮添加active类
+        clickedButton.classList.add('active');
+        debugDiv.innerHTML += '<br>✅ Button activated: ' + filter;
+        
+        // 3. 获取所有论文条目
+        var allItems = document.getElementsByClassName('publication-item');
+        debugDiv.innerHTML += '<br>📄 Found ' + allItems.length + ' publication items';
+        
+        var visibleCount = 0;
+        
+        // 4. 过滤显示论文
+        for (var j = 0; j < allItems.length; j++) {
+            var item = allItems[j];
+            var categories = item.getAttribute('data-category') || '';
+            
+            if (filter === 'all') {
+                // 显示所有论文
+                item.style.display = 'block';
+                visibleCount++;
+            } else {
+                // 检查是否包含指定类别
+                if (categories.indexOf(filter) >= 0) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        }
+        
+        debugDiv.innerHTML += '<br>👁️ Showing ' + visibleCount + ' items for filter: ' + filter;
+        debugDiv.scrollTop = debugDiv.scrollHeight;
+        
+    } catch (error) {
+        debugDiv.innerHTML += '<br>❌ Error: ' + error.message;
+    }
+}
+
+// 页面加载完成后的初始化
+function initializeFilters() {
+    var debugDiv = document.getElementById('debug');
+    debugDiv.innerHTML = '🚀 Initializing publication filters...';
+    
+    // 默认激活selected过滤器
+    var selectedBtn = document.querySelector('.filter-btn[data-filter="selected"]');
+    if (selectedBtn) {
+        handleFilterClick('selected', selectedBtn);
+    }
+}
+
+// 初始化
+setTimeout(initializeFilters, 100);
+</script>
+
+</body>
+</html> 

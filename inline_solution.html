@@ -1,0 +1,47 @@
+<!-- 内联JavaScript解决方案 - 替换您的过滤器部分 -->
+<div class="publication-filters">
+    <button class="filter-btn active" data-filter="selected" 
+            onclick="
+                var btns = document.getElementsByClassName('filter-btn');
+                for(var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+                this.classList.add('active');
+                var items = document.getElementsByClassName('publication-item');
+                for(var j=0; j<items.length; j++) {
+                    var cat = items[j].getAttribute('data-category') || '';
+                    items[j].style.display = cat.indexOf('selected') >= 0 ? 'block' : 'none';
+                }
+            ">SELECTED PAPERS</button>
+    
+    <button class="filter-btn" data-filter="all" 
+            onclick="
+                var btns = document.getElementsByClassName('filter-btn');
+                for(var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+                this.classList.add('active');
+                var items = document.getElementsByClassName('publication-item');
+                for(var j=0; j<items.length; j++) items[j].style.display = 'block';
+            ">ALL</button>
+    
+    <button class="filter-btn" data-filter="machine-learning" 
+            onclick="
+                var btns = document.getElementsByClassName('filter-btn');
+                for(var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+                this.classList.add('active');
+                var items = document.getElementsByClassName('publication-item');
+                for(var j=0; j<items.length; j++) {
+                    var cat = items[j].getAttribute('data-category') || '';
+                    items[j].style.display = cat.indexOf('machine-learning') >= 0 ? 'block' : 'none';
+                }
+            ">MACHINE LEARNING</button>
+    
+    <button class="filter-btn" data-filter="natural-language" 
+            onclick="
+                var btns = document.getElementsByClassName('filter-btn');
+                for(var i=0; i<btns.length; i++) btns[i].classList.remove('active');
+                this.classList.add('active');
+                var items = document.getElementsByClassName('publication-item');
+                for(var j=0; j<items.length; j++) {
+                    var cat = items[j].getAttribute('data-category') || '';
+                    items[j].style.display = cat.indexOf('natural-language') >= 0 ? 'block' : 'none';
+                }
+            ">NATURAL LANGUAGE PROCESSING</button>
+</div> 
