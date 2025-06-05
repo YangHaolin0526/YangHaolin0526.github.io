@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Publications Filter</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .publication-filters {
+            display: flex;
+            gap: 0;
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #f8f9fa;
+        }
+        .filter-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-right: 1px solid #ddd;
+            white-space: nowrap;
+            position: relative;
+            z-index: 10;
+            outline: none;
+        }
+        .filter-btn:last-child { border-right: none; }
+        .filter-btn:hover {
+            background: #e9ecef;
+            color: #333;
+        }
+        .filter-btn.active {
+            background: #007bff;
+            color: white;
+        }
+        .publication-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .publication-item.hidden { display: none; }
+        .debug-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Publications Filter Test</h1>
+    
+    <div id="debug" class="debug-info">Debug info will appear here...</div>
+    
+    <div class="publication-filters">
+        <button class="filter-btn active" data-filter="selected" onclick="filterPublications('selected')">SELECTED PAPERS</button>
+        <button class="filter-btn" data-filter="all" onclick="filterPublications('all')">ALL</button>
+        <button class="filter-btn" data-filter="machine-learning" onclick="filterPublications('machine-learning')">MACHINE LEARNING</button>
+        <button class="filter-btn" data-filter="natural-language" onclick="filterPublications('natural-language')">NATURAL LANGUAGE PROCESSING</button>
+    </div>
+    
+    <div class="publications-list">
+        <div class="publication-item" data-category="selected machine-learning">
+            <strong>Paper 1 (Selected + ML)</strong><br>
+            This is a selected machine learning paper.
+        </div>
+        
+        <div class="publication-item" data-category="selected natural-language">
+            <strong>Paper 2 (Selected + NLP)</strong><br>
+            This is a selected NLP paper.
+        </div>
+        
+        <div class="publication-item" data-category="machine-learning">
+            <strong>Paper 3 (ML only)</strong><br>
+            This is a machine learning paper.
+        </div>
+        
+        <div class="publication-item" data-category="natural-language">
+            <strong>Paper 4 (NLP only)</strong><br>
+            This is a natural language processing paper.
+        </div>
+        
+        <div class="publication-item" data-category="machine-learning natural-language">
+            <strong>Paper 5 (Both ML and NLP)</strong><br>
+            This paper covers both areas.
+        </div>
+    </div>
+
+    <script>
+        // 主要的过滤函数
+        function filterPublications(filter) {
+            updateDebug('Filtering publications by: ' + filter);
+            
+            // 移除所有按钮的active类
+            var allBtns = document.querySelectorAll('.filter-btn');
+            for (var i = 0; i < allBtns.length; i++) {
+                allBtns[i].classList.remove('active');
+            }
+            
+            // 给当前按钮添加active类
+            var currentBtn = document.querySelector('.filter-btn[data-filter="' + filter + '"]');
+            if (currentBtn) {
+                currentBtn.classList.add('active');
+                updateDebug('Button activated: ' + filter);
+            }
+            
+            // 获取所有论文条目
+            var items = document.querySelectorAll('.publication-item');
+            updateDebug('Found ' + items.length + ' publication items');
+            
+            var visibleCount = 0;
+            
+            // 过滤显示论文
+            for (var j = 0; j < items.length; j++) {
+                var item = items[j];
+                var categories = item.getAttribute('data-category') || '';
+                
+                if (filter === 'all') {
+                    // 显示所有论文
+                    item.style.display = 'block';
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    // 检查是否包含指定类别
+                    if (categories.indexOf(filter) !== -1) {
+                        item.style.display = 'block';
+                        item.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                        item.classList.add('hidden');
+                    }
+                }
+            }
+            
+            updateDebug('Showing ' + visibleCount + ' items for filter: ' + filter);
+        }
+
+        function updateDebug(message) {
+            var debug = document.getElementById('debug');
+            debug.innerHTML += '<br>' + new Date().toLocaleTimeString() + ': ' + message;
+        }
+
+        // 初始化函数
+        function initPublications() {
+            updateDebug('Publications page initialized');
+            // 默认显示selected论文
+            filterPublications('selected');
+        }
+
+        // 页面加载完成后初始化
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initPublications);
+        } else {
+            initPublications();
+        }
+    </script>
+</body>
+</html> 

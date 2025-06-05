@@ -2,13 +2,13 @@
 <div class="publications-container">
     <p>Most recent publications on <a href="https://scholar.google.com/citations?user=q0De288AAAAJ&hl=en" style="color: #4285f4;">Google Scholar</a>.</p>
     
-    <!-- Filter Tabs -->
-    <div class="publication-filters">
-        <button class="filter-btn active" data-filter="selected">SELECTED PAPERS</button>
-        <button class="filter-btn" data-filter="all">ALL</button>
-        <button class="filter-btn" data-filter="machine-learning">MACHINE LEARNING</button>
-        <button class="filter-btn" data-filter="natural-language">NATURAL LANGUAGE PROCESSING</button>
-    </div>
+                <!-- Filter Tabs -->
+            <div class="publication-filters">
+                <button class="filter-btn active" data-filter="selected" onclick="window.filterPublications('selected')">SELECTED PAPERS</button>
+                <button class="filter-btn" data-filter="all" onclick="window.filterPublications('all')">ALL</button>
+                <button class="filter-btn" data-filter="machine-learning" onclick="window.filterPublications('machine-learning')">MACHINE LEARNING</button>
+                <button class="filter-btn" data-filter="natural-language" onclick="window.filterPublications('natural-language')">NATURAL LANGUAGE PROCESSING</button>
+            </div>
     
     <!-- Publications List -->
     <div class="publications-list">
@@ -557,71 +557,64 @@
 </style>
 
 <script>
-// 使用多种方式确保脚本正确加载
-function initPublicationFilters() {
-    console.log('Initializing publication filters...');
+        // 主要的过滤函数
+        window.filterPublications = function(filter) {
+    console.log('Filtering publications by:', filter);
     
-    var filterBtns = document.querySelectorAll('.filter-btn');
-    var publicationItems = document.querySelectorAll('.publication-item');
-    
-    console.log('Found filter buttons:', filterBtns.length);
-    console.log('Found publication items:', publicationItems.length);
-    
-    // 为每个按钮添加点击事件
-    for (var i = 0; i < filterBtns.length; i++) {
-        filterBtns[i].onclick = function() {
-            console.log('Button clicked:', this.getAttribute('data-filter'));
-            
-            // 移除所有按钮的active类
-            for (var j = 0; j < filterBtns.length; j++) {
-                filterBtns[j].classList.remove('active');
-            }
-            
-            // 给点击的按钮添加active类
-            this.classList.add('active');
-            
-            var filter = this.getAttribute('data-filter');
-            
-            // 过滤论文条目
-            for (var k = 0; k < publicationItems.length; k++) {
-                var item = publicationItems[k];
-                var categories = item.getAttribute('data-category');
-                
-                if (filter === 'all') {
-                    item.style.display = 'block';
-                    item.classList.remove('hidden');
-                } else {
-                    if (categories && categories.indexOf(filter) !== -1) {
-                        item.style.display = 'block';
-                        item.classList.remove('hidden');
-                    } else {
-                        item.style.display = 'none';
-                        item.classList.add('hidden');
-                    }
-                }
-            }
-        };
+    // 移除所有按钮的active类
+    var allBtns = document.querySelectorAll('.filter-btn');
+    for (var i = 0; i < allBtns.length; i++) {
+        allBtns[i].classList.remove('active');
     }
     
-    // 初始化时激活"selected"过滤器
-    var selectedFilter = document.querySelector('.filter-btn[data-filter="selected"]');
-    if (selectedFilter) {
-        selectedFilter.click();
+    // 给当前按钮添加active类
+    var currentBtn = document.querySelector('.filter-btn[data-filter="' + filter + '"]');
+    if (currentBtn) {
+        currentBtn.classList.add('active');
+    }
+    
+    // 获取所有论文条目
+    var items = document.querySelectorAll('.publication-item');
+    console.log('Found', items.length, 'publication items');
+    
+    // 过滤显示论文
+    for (var j = 0; j < items.length; j++) {
+        var item = items[j];
+        var categories = item.getAttribute('data-category') || '';
+        
+        if (filter === 'all') {
+            // 显示所有论文
+            item.style.display = 'block';
+            item.classList.remove('hidden');
+        } else {
+            // 检查是否包含指定类别
+            if (categories.indexOf(filter) !== -1) {
+                item.style.display = 'block';
+                item.classList.remove('hidden');
+            } else {
+                item.style.display = 'none';
+                item.classList.add('hidden');
+            }
+        }
     }
 }
 
-// 多种加载方式确保兼容性
+// 初始化函数
+function initPublications() {
+    console.log('Publications page initialized');
+    // 默认显示selected论文
+    filterPublications('selected');
+}
+
+// 页面加载完成后初始化
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPublicationFilters);
+    document.addEventListener('DOMContentLoaded', initPublications);
 } else {
-    initPublicationFilters();
+    initPublications();
 }
 
-// 备用加载方式
+// 确保在所有资源加载完后也执行一次
 window.addEventListener('load', function() {
-    setTimeout(initPublicationFilters, 100);
+    setTimeout(initPublications, 200);
 });
-
-// 立即尝试执行（如果DOM已经准备好）
-setTimeout(initPublicationFilters, 500);
 </script>

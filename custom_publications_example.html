@@ -1,0 +1,222 @@
+<!-- 增强版出版物过滤器示例 -->
+<div class="publications-container">
+    <p>Most recent publications on <a href="https://scholar.google.com/citations?user=q0De288AAAAJ&hl=en" style="color: #4285f4;">Google Scholar</a>.</p>
+    
+    <!-- 增强版过滤标签 - 带计数功能 -->
+    <div class="publication-filters">
+        <button class="filter-btn active" data-filter="selected" onclick="filterPublications('selected')">
+            SELECTED PAPERS <span class="count" id="count-selected">(0)</span>
+        </button>
+        <button class="filter-btn" data-filter="all" onclick="filterPublications('all')">
+            ALL <span class="count" id="count-all">(0)</span>
+        </button>
+        <button class="filter-btn" data-filter="machine-learning" onclick="filterPublications('machine-learning')">
+            MACHINE LEARNING <span class="count" id="count-machine-learning">(0)</span>
+        </button>
+        <button class="filter-btn" data-filter="natural-language" onclick="filterPublications('natural-language')">
+            NATURAL LANGUAGE PROCESSING <span class="count" id="count-natural-language">(0)</span>
+        </button>
+        <button class="filter-btn" data-filter="computer-vision" onclick="filterPublications('computer-vision')">
+            COMPUTER VISION <span class="count" id="count-computer-vision">(0)</span>
+        </button>
+    </div>
+    
+    <!-- 样例论文数据 -->
+    <div class="publications-list">
+        <!-- 添加更多分类示例 -->
+        <div class="publication-item" data-category="selected computer-vision machine-learning" data-year="2024">
+            <div class="pub-title">
+                <a href="">视觉语言模型示例论文</a>
+            </div>
+            <div class="pub-authors">作者列表...</div>
+            <div class="pub-venue"><em>CVPR 2024</em></div>
+        </div>
+        
+        <div class="publication-item" data-category="natural-language selected" data-year="2024">
+            <div class="pub-title">
+                <a href="">自然语言处理示例论文</a>
+            </div>
+            <div class="pub-authors">作者列表...</div>
+            <div class="pub-venue"><em>ACL 2024</em></div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* 增强版CSS样式 */
+.publication-filters {
+    display: flex;
+    gap: 0;
+    margin-bottom: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    padding: 12px 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-right: 1px solid #ddd;
+    white-space: nowrap;
+    position: relative;
+    z-index: 10;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.filter-btn:last-child {
+    border-right: none;
+}
+
+.filter-btn:hover {
+    background: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    transform: translateY(-1px);
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.count {
+    font-size: 0.7rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+.filter-btn.active .count {
+    opacity: 1;
+}
+
+/* 添加年份标签 */
+.pub-year {
+    background: #e9ecef;
+    color: #495057;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-left: 8px;
+}
+
+/* 响应式设计增强 */
+@media (max-width: 768px) {
+    .publication-filters {
+        flex-direction: column;
+    }
+    
+    .filter-btn {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .filter-btn:last-child {
+        border-bottom: none;
+    }
+}
+</style>
+
+<script>
+// 增强版JavaScript - 包含计数功能
+function filterPublications(filter) {
+    console.log('Filtering publications by:', filter);
+    
+    // 移除所有按钮的active类
+    var allBtns = document.querySelectorAll('.filter-btn');
+    for (var i = 0; i < allBtns.length; i++) {
+        allBtns[i].classList.remove('active');
+    }
+    
+    // 给当前按钮添加active类
+    var currentBtn = document.querySelector('.filter-btn[data-filter="' + filter + '"]');
+    if (currentBtn) {
+        currentBtn.classList.add('active');
+    }
+    
+    // 获取所有论文条目
+    var items = document.querySelectorAll('.publication-item');
+    var visibleCount = 0;
+    
+    // 过滤显示论文
+    for (var j = 0; j < items.length; j++) {
+        var item = items[j];
+        var categories = item.getAttribute('data-category') || '';
+        
+        if (filter === 'all') {
+            item.style.display = 'block';
+            item.classList.remove('hidden');
+            visibleCount++;
+        } else {
+            if (categories.indexOf(filter) !== -1) {
+                item.style.display = 'block';
+                item.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+                item.classList.add('hidden');
+            }
+        }
+    }
+    
+    // 更新当前过滤器的计数
+    updateCounts();
+    
+    console.log('Showing', visibleCount, 'items for filter:', filter);
+}
+
+// 更新所有过滤器的计数
+function updateCounts() {
+    var filters = ['selected', 'all', 'machine-learning', 'natural-language', 'computer-vision'];
+    var items = document.querySelectorAll('.publication-item');
+    
+    filters.forEach(function(filter) {
+        var count = 0;
+        
+        if (filter === 'all') {
+            count = items.length;
+        } else {
+            for (var i = 0; i < items.length; i++) {
+                var categories = items[i].getAttribute('data-category') || '';
+                if (categories.indexOf(filter) !== -1) {
+                    count++;
+                }
+            }
+        }
+        
+        var countElement = document.getElementById('count-' + filter);
+        if (countElement) {
+            countElement.textContent = '(' + count + ')';
+        }
+    });
+}
+
+// 初始化
+function initPublications() {
+    updateCounts();
+    filterPublications('selected');
+}
+
+// 页面加载时初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPublications);
+} else {
+    initPublications();
+}
+</script> 
