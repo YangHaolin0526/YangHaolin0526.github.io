@@ -432,6 +432,9 @@
     letter-spacing: 0.5px;
     border-right: 1px solid #ddd;
     white-space: nowrap;
+    position: relative;
+    z-index: 10;
+    outline: none;
 }
 
 .filter-btn:last-child {
@@ -444,7 +447,7 @@
 }
 
 .filter-btn.active {
-    background: #333;
+    background: #007bff;
     color: white;
 }
 
@@ -554,39 +557,71 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const publicationItems = document.querySelectorAll('.publication-item');
+// 使用多种方式确保脚本正确加载
+function initPublicationFilters() {
+    console.log('Initializing publication filters...');
     
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterBtns.forEach(b => b.classList.remove('active'));
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var publicationItems = document.querySelectorAll('.publication-item');
+    
+    console.log('Found filter buttons:', filterBtns.length);
+    console.log('Found publication items:', publicationItems.length);
+    
+    // 为每个按钮添加点击事件
+    for (var i = 0; i < filterBtns.length; i++) {
+        filterBtns[i].onclick = function() {
+            console.log('Button clicked:', this.getAttribute('data-filter'));
             
-            // Add active class to clicked button
+            // 移除所有按钮的active类
+            for (var j = 0; j < filterBtns.length; j++) {
+                filterBtns[j].classList.remove('active');
+            }
+            
+            // 给点击的按钮添加active类
             this.classList.add('active');
             
-            const filter = this.getAttribute('data-filter');
+            var filter = this.getAttribute('data-filter');
             
-            publicationItems.forEach(item => {
+            // 过滤论文条目
+            for (var k = 0; k < publicationItems.length; k++) {
+                var item = publicationItems[k];
+                var categories = item.getAttribute('data-category');
+                
                 if (filter === 'all') {
+                    item.style.display = 'block';
                     item.classList.remove('hidden');
                 } else {
-                    const categories = item.getAttribute('data-category');
-                    if (categories && categories.includes(filter)) {
+                    if (categories && categories.indexOf(filter) !== -1) {
+                        item.style.display = 'block';
                         item.classList.remove('hidden');
                     } else {
+                        item.style.display = 'none';
                         item.classList.add('hidden');
                     }
                 }
-            });
-        });
-    });
+            }
+        };
+    }
     
-    // Initialize with "selected" filter active
-    const selectedFilter = document.querySelector('.filter-btn[data-filter="selected"]');
+    // 初始化时激活"selected"过滤器
+    var selectedFilter = document.querySelector('.filter-btn[data-filter="selected"]');
     if (selectedFilter) {
         selectedFilter.click();
     }
+}
+
+// 多种加载方式确保兼容性
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPublicationFilters);
+} else {
+    initPublicationFilters();
+}
+
+// 备用加载方式
+window.addEventListener('load', function() {
+    setTimeout(initPublicationFilters, 100);
 });
+
+// 立即尝试执行（如果DOM已经准备好）
+setTimeout(initPublicationFilters, 500);
 </script>
