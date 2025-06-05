@@ -2,20 +2,19 @@
 <div class="publications-container">
     <p>Most recent publications on <a href="https://scholar.google.com/citations?user=q0De288AAAAJ&hl=en" style="color: #4285f4;">Google Scholar</a>.</p>
     
-                <!-- Filter Tabs -->
-            <div class="publication-filters">
-                <button class="filter-btn active" data-filter="selected" onclick="handleFilterClick('selected', this)">SELECTED PAPERS</button>
-                <button class="filter-btn" data-filter="all" onclick="handleFilterClick('all', this)">ALL</button>
-                <button class="filter-btn" data-filter="machine-learning" onclick="handleFilterClick('machine-learning', this)">MACHINE LEARNING</button>
-                <button class="filter-btn" data-filter="natural-language" onclick="handleFilterClick('natural-language', this)">NATURAL LANGUAGE PROCESSING</button>
-                <button class="filter-btn" data-filter="computer-vision" onclick="handleFilterClick('computer-vision', this)">COMPUTER VISION</button>
-            </div>
+    <!-- Filter Tabs -->
+    <div class="publication-filters">
+        <button class="filter-btn active" data-filter="selected" onclick="filterPublications('selected', this)">SELECTED PAPERS</button>
+        <button class="filter-btn" data-filter="all" onclick="filterPublications('all', this)">ALL</button>
+        <button class="filter-btn" data-filter="machine-learning" onclick="filterPublications('machine-learning', this)">MACHINE LEARNING</button>
+        <button class="filter-btn" data-filter="natural-language" onclick="filterPublications('natural-language', this)">NATURAL LANGUAGE PROCESSING</button>
+        <button class="filter-btn" data-filter="computer-vision" onclick="filterPublications('computer-vision', this)">COMPUTER VISION</button>
+    </div>
     
     <!-- Publications List -->
     <div class="publications-list">
         
-        <!-- Vision Language Model Training -->
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning computer-vision">
             <div class="pub-title">
                 <a href="">G-llava: Solving geometric problem with multi-modal large language model</a>
             </div>
@@ -33,7 +32,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning computer-vision">
             <div class="pub-title">
                 <a href="">Image Textualization: An Automatic Framework for Creating Accurate and Detailed Image Descriptions</a>
             </div>
@@ -51,7 +50,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning computer-vision">
             <div class="pub-title">
                 <a href="">Strengthening Multimodal Large Language Model with Bootstrapped Preference Optimization</a>
             </div>
@@ -69,7 +68,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning computer-vision">
             <div class="pub-title">
                 <a href="">VL-GenRM: Enhancing Vision-Language Verification via Vision Experts and Iterative Training</a>
             </div>
@@ -87,7 +86,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning computer-vision">
             <div class="pub-title">
                 <a href="">X2-VLM: All-In-One Pre-trained Model For Vision-Language Tasks</a>
             </div>
@@ -105,7 +104,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning natural-language">
             <div class="pub-title">
                 <a href="">Toward Building General Foundation Models for Language, Vision, and Vision-Language Understanding Tasks</a>
             </div>
@@ -123,7 +122,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning natural-language">
             <div class="pub-title">
                 <a href="">UniMath: A Foundational and Multimodal Mathematical Reasoner</a>
             </div>
@@ -141,8 +140,7 @@
             </div>
         </div>
 
-        <!-- Reinforcement Learning and Agent -->
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning natural-language">
             <div class="pub-title">
                 <a href="">Mitigating the Alignment Tax of RLHF</a>
             </div>
@@ -160,7 +158,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning computer-vision">
             <div class="pub-title">
                 <a href="">VL-GenRM: Enhancing Vision-Language Verification via Vision Experts and Iterative Training</a>
             </div>
@@ -178,7 +176,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning natural-language">
             <div class="pub-title">
                 <a href="">ExeSQL: Self-Taught Text-to-SQL Models with Execution-Driven Bootstrapping for SQL Dialects</a>
             </div>
@@ -196,7 +194,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning">
             <div class="pub-title">
                 <a href="">Raft: Reward ranked finetuning for generative foundation model alignment</a>
             </div>
@@ -214,7 +212,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning computer-vision">
             <div class="pub-title">
                 <a href="">DetGPT: Detect What You Need via Reasoning</a>
             </div>
@@ -232,8 +230,7 @@
             </div>
         </div>
 
-        <!-- Continue with more papers... -->
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning">
             <div class="pub-title">
                 <a href="">Fox Foundation Model: A Pioneering Small Language Model (SLM) for Cloud and Edge</a>
             </div>
@@ -251,7 +248,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning">
             <div class="pub-title">
                 <a href="">Lmflow: An extensible toolkit for finetuning and inference of large foundation models</a>
             </div>
@@ -269,7 +266,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning">
             <div class="pub-title">
                 <a href="">TAGCOS: Task-Agnostic Gradient Clustered Coreset Selection</a>
             </div>
@@ -287,7 +284,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning natural-language">
             <div class="pub-title">
                 <a href="">Bridge-Coder: Unlocking LLMs' Potential to Overcome Language Gaps in Low-Resource Code</a>
             </div>
@@ -305,7 +302,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="machine-learning">
             <div class="pub-title">
                 <a href="">An Improved Autoregressive Evaluation Paradigm for Large Language Models</a>
             </div>
@@ -323,7 +320,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning">
             <div class="pub-title">
                 <a href="">ScaleBiO: Scalable Bilevel Optimization for LLM Data Reweighting</a>
             </div>
@@ -341,7 +338,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning natural-language">
             <div class="pub-title">
                 <a href="">TheoremLlama: Transforming General-Purpose LLMs into Lean4 Experts</a>
             </div>
@@ -359,7 +356,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning natural-language">
             <div class="pub-title">
                 <a href="">Graph-to-Tree Learning for Solving Math Word Problems</a>
             </div>
@@ -377,7 +374,7 @@
             </div>
         </div>
 
-        <div class="publication-item">
+        <div class="publication-item" data-category="selected machine-learning natural-language">
             <div class="pub-title">
                 <a href="">MWP-BERT: Numeracy-Augmented Pre-Training for Math Word Problem Solving</a>
             </div>
@@ -558,295 +555,61 @@
 </style>
 
 <script>
-// 适用于Jekyll环境的publication过滤器 - 带自动分类功能
-(function() {
-    'use strict';
+// 简化版过滤器 - 专为GitHub Pages优化
+function filterPublications(filter, clickedButton) {
+    console.log('Filtering by:', filter);
     
-    // 自动分类规则
-    var categoryRules = {
-        'machine-learning': [
-            'machine learning', 'ml', 'deep learning', 'neural', 'model', 'training', 'optimization',
-            'multimodal', 'vision-language', 'vlm', 'foundation model', 'large language model',
-            'llm', 'gpt', 'bert', 'transformer', 'finetuning', 'alignment', 'rlhf', 'reinforcement',
-            'detection', 'visual', 'image', 'geometric', 'preference optimization', 'bootstrapped'
-        ],
-        'natural-language': [
-            'language', 'nlp', 'text', 'linguistic', 'parsing', 'generation', 'understanding',
-            'sql', 'code', 'programming', 'mathematical', 'reasoning', 'word problems',
-            'theorem', 'lean4', 'math', 'autoregressive', 'evaluation', 'gradient', 'coreset',
-            'bilingual', 'low-resource', 'dialect'
-        ],
-        'computer-vision': [
-            'vision', 'image', 'visual', 'detection', 'recognition', 'computer vision',
-            'textualization', 'geometric', 'multimodal', 'vision-language'
-        ]
-    };
-    
-    // 高质量会议/期刊列表 - 自动标记为selected
-    var topVenues = [
-        'ICLR', 'NeurIPS', 'ICML', 'ACL', 'EMNLP', 'NAACL', 'CVPR', 'ICCV', 'ECCV',
-        'TPAMI', 'JMLR', 'TMLR', 'Nature', 'Science', 'AAAI', 'IJCAI'
-    ];
-    
-    // 自动分类函数
-    function autoClassifyPublication(title, venue, authors) {
-        var categories = [];
-        var text = (title + ' ' + venue + ' ' + authors).toLowerCase();
-        
-        // 检查是否为顶级会议/期刊
-        var isTopVenue = topVenues.some(function(topVenue) {
-            return venue.toUpperCase().indexOf(topVenue) >= 0;
-        });
-        
-        if (isTopVenue) {
-            categories.push('selected');
-        }
-        
-        // 检查每个类别的关键词
-        for (var category in categoryRules) {
-            var keywords = categoryRules[category];
-            var matchCount = 0;
-            
-            for (var i = 0; i < keywords.length; i++) {
-                if (text.indexOf(keywords[i]) >= 0) {
-                    matchCount++;
-                }
-            }
-            
-            // 如果匹配到关键词，添加到类别中
-            if (matchCount > 0) {
-                categories.push(category);
-            }
-        }
-        
-        // 确保至少有一个类别
-        if (categories.length === 0) {
-            categories.push('machine-learning'); // 默认分类
-        }
-        
-        return categories.join(' ');
-    }
-    
-    // 自动应用分类到所有论文 - GitHub Pages强化版本
-    function applyAutoClassification() {
-        console.log('🤖 Starting automatic classification for GitHub Pages...');
-        
-        var items = document.getElementsByClassName('publication-item');
-        var classifiedCount = 0;
-        
-        console.log('📊 Found ' + items.length + ' publication items to classify');
-        
-        for (var i = 0; i < items.length; i++) {
-            var item = items[i];
-            var titleElement = item.querySelector('.pub-title a');
-            var venueElement = item.querySelector('.pub-venue');
-            var authorsElement = item.querySelector('.pub-authors');
-            
-            if (titleElement && venueElement && authorsElement) {
-                var title = titleElement.textContent || titleElement.innerText || '';
-                var venue = venueElement.textContent || venueElement.innerText || '';
-                var authors = authorsElement.textContent || authorsElement.innerText || '';
-                
-                // 移除任何现有的data-category属性
-                item.removeAttribute('data-category');
-                
-                var autoCategories = autoClassifyPublication(title, venue, authors);
-                
-                // 强制设置新的分类
-                item.setAttribute('data-category', autoCategories);
-                
-                // 验证设置是否成功
-                var setCategory = item.getAttribute('data-category');
-                if (setCategory === autoCategories) {
-                    console.log('📄 "' + title.substring(0, 40) + '..." -> [' + autoCategories + '] ✅');
-                } else {
-                    console.log('❌ Failed to set category for: ' + title.substring(0, 40) + '...');
-                }
-                
-                classifiedCount++;
-            } else {
-                console.log('⚠️ Missing elements in publication item ' + i);
-            }
-        }
-        
-        console.log('✅ Auto-classified ' + classifiedCount + ' publications');
-        
-        // 验证分类结果
-        setTimeout(function() {
-            verifyClassification();
-        }, 100);
-    }
-    
-    // 验证分类结果
-    function verifyClassification() {
-        var items = document.getElementsByClassName('publication-item');
-        var categorizedItems = 0;
-        
-        for (var i = 0; i < items.length; i++) {
-            var category = items[i].getAttribute('data-category');
-            if (category && category.length > 0) {
-                categorizedItems++;
-            }
-        }
-        
-        console.log('🔍 Verification: ' + categorizedItems + ' out of ' + items.length + ' items have categories');
-        
-        if (categorizedItems === 0) {
-            console.log('⚠️ No items were categorized! Retrying...');
-            setTimeout(applyAutoClassification, 500);
-        }
-    }
-    
-    // 全局过滤函数
-    window.handleFilterClick = function(filter, clickedButton) {
-        console.log('🔄 Button clicked: ' + filter + ' at ' + new Date().toLocaleTimeString());
-        
-        try {
-            // 1. 移除所有按钮的active类
-            var allButtons = document.getElementsByClassName('filter-btn');
-            for (var i = 0; i < allButtons.length; i++) {
-                allButtons[i].classList.remove('active');
-            }
-            
-            // 2. 给点击的按钮添加active类
-            clickedButton.classList.add('active');
-            console.log('✅ Button activated: ' + filter);
-            
-            // 3. 获取所有论文条目
-            var allItems = document.getElementsByClassName('publication-item');
-            console.log('📄 Found ' + allItems.length + ' publication items');
-            
-            var visibleCount = 0;
-            
-            // 4. 过滤显示论文
-            for (var j = 0; j < allItems.length; j++) {
-                var item = allItems[j];
-                var categories = item.getAttribute('data-category') || '';
-                
-                if (filter === 'all') {
-                    // 显示所有论文
-                    item.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    // 检查是否包含指定类别
-                    if (categories.indexOf(filter) >= 0) {
-                        item.style.display = 'block';
-                        visibleCount++;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                }
-            }
-            
-            console.log('👁️ Showing ' + visibleCount + ' items for filter: ' + filter);
-            
-        } catch (error) {
-            console.error('❌ Error: ' + error.message);
-            console.error(error);
-        }
-    };
-
-    // 初始化函数
-    function initializeFilters() {
-        console.log('🚀 Initializing publication filters in Jekyll...');
-        
-        // 检查是否存在按钮和论文条目
-        var filterButtons = document.getElementsByClassName('filter-btn');
-        var publicationItems = document.getElementsByClassName('publication-item');
-        
-        console.log('Found ' + filterButtons.length + ' filter buttons');
-        console.log('Found ' + publicationItems.length + ' publication items');
-        
-        if (filterButtons.length === 0 || publicationItems.length === 0) {
-            console.log('⚠️ Elements not ready, retrying...');
-            return false;
-        }
-        
-        // 首先执行自动分类
-        applyAutoClassification();
-        
-        // 然后激活selected过滤器
-        var selectedBtn = document.querySelector('.filter-btn[data-filter="selected"]');
-        if (selectedBtn) {
-            window.handleFilterClick('selected', selectedBtn);
-            return true;
-        } else {
-            console.log('⚠️ Selected button not found');
-            return false;
-        }
-    }
-    
-    // GitHub Pages专用初始化策略
-    var initAttempts = 0;
-    var maxAttempts = 20;  // 增加重试次数
-    var isInitialized = false;
-    
-    function tryInitialize() {
-        if (isInitialized) return;  // 防止重复初始化
-        
-        initAttempts++;
-        console.log('🔄 GitHub Pages initialization attempt ' + initAttempts);
-        
-        if (initializeFilters()) {
-            console.log('✅ Publication filters initialized successfully on GitHub Pages!');
-            isInitialized = true;
-        } else if (initAttempts < maxAttempts) {
-            setTimeout(tryInitialize, 300);  // 增加延迟
-        } else {
-            console.log('❌ Failed to initialize publication filters after ' + maxAttempts + ' attempts');
-        }
-    }
-    
-    // 为GitHub Pages优化的多重初始化
-    // 1. 立即尝试
-    setTimeout(tryInitialize, 500);
-    
-    // 2. DOM加载完成后尝试
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(tryInitialize, 500);
-        });
-    } else {
-        setTimeout(tryInitialize, 300);
-    }
-    
-    // 3. 页面完全加载后尝试（等待所有资源包括图片）
-    window.addEventListener('load', function() {
-        setTimeout(tryInitialize, 800);
+    // 移除所有active类
+    var buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(function(btn) {
+        btn.classList.remove('active');
     });
     
-    // 4. 如果有jQuery，在jQuery ready后尝试
-    if (typeof window.jQuery !== 'undefined') {
-        window.jQuery(document).ready(function() {
-            setTimeout(tryInitialize, 400);
-        });
-    }
+    // 添加active到点击的按钮
+    clickedButton.classList.add('active');
     
-    // 5. 使用MutationObserver监听DOM变化（适用于动态加载的内容）
-    if (typeof MutationObserver !== 'undefined') {
-        var observer = new MutationObserver(function(mutations) {
-            if (!isInitialized) {
-                setTimeout(tryInitialize, 200);
-            }
-        });
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+    // 获取所有publication项目
+    var items = document.querySelectorAll('.publication-item');
+    var visibleCount = 0;
+    
+    items.forEach(function(item) {
+        var categories = item.getAttribute('data-category') || '';
         
-        // 10秒后停止观察
-        setTimeout(function() {
-            observer.disconnect();
-        }, 10000);
-    }
-    
-    // 6. 为GitHub Pages添加额外的延迟初始化
-    setTimeout(function() {
-        if (!isInitialized) {
-            console.log('🔧 GitHub Pages fallback initialization...');
-            tryInitialize();
+        if (filter === 'all' || categories.includes(filter)) {
+            item.style.display = 'block';
+            visibleCount++;
+        } else {
+            item.style.display = 'none';
         }
-    }, 2000);
+    });
     
-})();
+    console.log('Showing', visibleCount, 'publications for filter:', filter);
+}
+
+// 页面加载完成后执行初始过滤
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing filters...');
+    
+    // 延迟执行以确保所有元素都已加载
+    setTimeout(function() {
+        var selectedBtn = document.querySelector('.filter-btn[data-filter="selected"]');
+        if (selectedBtn) {
+            filterPublications('selected', selectedBtn);
+            console.log('Initial filter applied: selected');
+        } else {
+            console.log('Selected button not found');
+        }
+    }, 100);
+});
+
+// 备用初始化 - 如果DOMContentLoaded没有执行
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        var selectedBtn = document.querySelector('.filter-btn[data-filter="selected"]');
+        if (selectedBtn && !selectedBtn.classList.contains('active')) {
+            filterPublications('selected', selectedBtn);
+            console.log('Backup initialization completed');
+        }
+    }, 300);
+});
 </script>
