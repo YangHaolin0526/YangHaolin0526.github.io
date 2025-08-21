@@ -7,13 +7,13 @@
 
 # Site Settings
 locale                   : "hk-CN"
-title                    : "Jipeng ZHANG"
+title                    : "Haolin Yang"
 title_separator          : "-"
 name                     : &name "Jipeng ZHANG"
-description              : &description "Ph.D. student at Hong Kong University of Science and Technology"
-url                      : https://2003pro.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+description              : &description "Undergraduate student at Hong Kong University of Science and Technology"
+url                      : https://YangHaolin0526.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "2003pro/2003pro.github.io"
+repository               : "YangHaolin0526/YangHaolin0526.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
@@ -80,14 +80,14 @@ analytics:
 
 # Site Author
 author:
-  name             : "Jipeng ZHANG"
-  avatar           : "ZHANG_Jipeng.jpg"
-  bio              : "Ph.D. student at HKUST"
+  name             : "Haolin Yang"
+  avatar           : #""
+  bio              : "Undergraduate student at HKUST"
   location         : "Clear Water Bay, Hong Kong SAR"
   employer         :
   pubmed           : 
-  googlescholar    : "https://scholar.google.com/citations?user=q0De288AAAAJ&hl=en"
-  email            : "zhangjipeng20@outlook.com"
+  googlescholar    : "https://scholar.google.com/citations?user=apnTjZIAAAAJ&hl=zh-CN"
+  email            : "阳皓霖926@gmail.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -96,7 +96,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "2003pro"
+  github           : "YangHaolin0526"
   google_plus      :
   keybase          :
   instagram        :
